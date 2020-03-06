@@ -1,0 +1,388 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 14, 2019 at 06:05 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `doctorchamber_install`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `appointment_id` int(11) NOT NULL,
+  `timestamp` int(11) NOT NULL,
+  `schedule` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `patient_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `chamber_id` int(11) NOT NULL,
+  `is_visited` tinyint(1) NOT NULL DEFAULT '0',
+  `doctor_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appointment_id`, `timestamp`, `schedule`, `patient_id`, `user_id`, `chamber_id`, `is_visited`, `doctor_id`) VALUES
+(1, 1573322400, '9:00 AM - 11:00 AM', 1, 1, 1, 0, NULL),
+(2, 1573495200, '12:00 PM - 6:00 PM', 2, 1, 3, 0, NULL),
+(3, 1573686000, '6:00 PM - 12:00 AM', 3, 2, 3, 0, NULL),
+(4, 1573513200, '12:00 PM - 6:00 PM', 3, 2, 3, 0, 1),
+(5, 1573772400, '6:00 PM - 10:30 PM', 3, 1, 3, 0, NULL),
+(6, 1573513200, '12:00 PM - 6:00 PM', 3, 1, 3, 0, NULL),
+(7, 1573513200, '12:00 PM - 6:00 PM', 4, 2, 3, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chamber`
+--
+
+CREATE TABLE `chamber` (
+  `chamber_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `about` text COLLATE utf8_unicode_ci NOT NULL,
+  `schedule` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chamber`
+--
+
+INSERT INTO `chamber` (`chamber_id`, `name`, `address`, `about`, `schedule`) VALUES
+(1, 'Sydney Home', 'Some address', 'Something', '[{\"day\":\"sunday\",\"key\":0,\"status\":\"open\",\"morning_open\":\"9:00 AM\",\"morning_close\":\"11:00 AM\",\"morning\":\"9:00 AM - 11:00 AM\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"monday\",\"key\":1,\"status\":\"open\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"2:30 PM\",\"afternoon_close\":\"4:00 PM\",\"afternoon\":\"2:30 PM - 4:00 PM\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"tuesday\",\"key\":2,\"status\":\"open\",\"morning_open\":\"11:00 AM\",\"morning_close\":\"11:30 AM\",\"morning\":\"11:00 AM - 11:30 AM\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"wednesday\",\"key\":3,\"status\":\"open\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"6:30 PM\",\"evening_close\":\"8:00 PM\",\"evening\":\"6:30 PM - 8:00 PM\"},{\"day\":\"thursday\",\"key\":4,\"status\":\"open\",\"morning_open\":\"11:30 AM\",\"morning_close\":\"12:00 PM\",\"morning\":\"11:30 AM - 12:00 PM\",\"afternoon_open\":\"2:30 PM\",\"afternoon_close\":\"4:00 PM\",\"afternoon\":\"2:30 PM - 4:00 PM\",\"evening_open\":\"9:30 PM\",\"evening_close\":\"11:30 PM\",\"evening\":\"9:30 PM - 11:30 PM\"},{\"day\":\"friday\",\"key\":5,\"status\":\"open\",\"morning_open\":\"8:00 AM\",\"morning_close\":\"8:30 AM\",\"morning\":\"8:00 AM - 8:30 AM\",\"afternoon_open\":\"12:00 PM\",\"afternoon_close\":\"2:00 PM\",\"afternoon\":\"12:00 PM - 2:00 PM\",\"evening_open\":\"6:00 PM\",\"evening_close\":\"8:30 PM\",\"evening\":\"6:00 PM - 8:30 PM\"},{\"day\":\"saturday\",\"key\":6,\"status\":\"open\",\"morning_open\":\"10:00 AM\",\"morning_close\":\"11:30 AM\",\"morning\":\"10:00 AM - 11:30 AM\",\"afternoon_open\":\"2:00 PM\",\"afternoon_close\":\"4:00 PM\",\"afternoon\":\"2:00 PM - 4:00 PM\",\"evening_open\":\"7:30 PM\",\"evening_close\":\"9:30 PM\",\"evening\":\"7:30 PM - 9:30 PM\"}]'),
+(3, 'Dhaka', 'dhaka', '', '[{\"day\":\"sunday\",\"key\":0,\"status\":\"open\",\"morning_open\":\"\",\"morning_close\":\"8:00 AM\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"9:30 PM\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"monday\",\"key\":1,\"status\":\"closed\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"tuesday\",\"key\":2,\"status\":\"open\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"12:00 PM\",\"afternoon_close\":\"6:00 PM\",\"afternoon\":\"12:00 PM - 6:00 PM\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"wednesday\",\"key\":3,\"status\":\"closed\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"},{\"day\":\"thursday\",\"key\":4,\"status\":\"open\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"6:00 PM\",\"evening_close\":\"12:00 AM\",\"evening\":\"6:00 PM - 12:00 AM\"},{\"day\":\"friday\",\"key\":5,\"status\":\"open\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"6:00 PM\",\"evening_close\":\"10:30 PM\",\"evening\":\"6:00 PM - 10:30 PM\"},{\"day\":\"saturday\",\"key\":6,\"status\":\"closed\",\"morning_open\":\"\",\"morning_close\":\"\",\"morning\":\"\",\"afternoon_open\":\"\",\"afternoon_close\":\"\",\"afternoon\":\"\",\"evening_open\":\"\",\"evening_close\":\"\",\"evening\":\"\"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('80rs2gp9peogatt8o7phtgnqn9s8n399', '::1', 1573492452, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439323136323b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('5rtsp63n4bc37gd3dnt0rillpif7gj65', '::1', 1573492787, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439323530383b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('hgr9sq3s5aohn33fl08evagjn718opsk', '127.0.0.1', 1573493305, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439333033383b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('4m8fkjgu8n8uekt5f398s5b26qdgpo43', '127.0.0.1', 1573493495, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439333439303b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('7hvikthngu80g8bmv98vij1g5v33mcep', '127.0.0.1', 1573494359, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439343036363b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('q5b2kb5jv5rojvp5e0tdqvopjatb9t6o', '127.0.0.1', 1573495082, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439343734383b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('1m9c67ndf1a9ue3f3evgt445v5noch03', '127.0.0.1', 1573495303, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439353135393b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('aamuroac55hh11ajofs0prtop127sfb1', '127.0.0.1', 1573496012, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439353532333b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('bn856mnisfrhjvhnkfdgvogsuupudn2p', '127.0.0.1', 1573496220, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439363131303b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('ggack20lm7rril2jvac3kv02tm6vr7ea', '127.0.0.1', 1573498705, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333439383730343b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('ead23lq5da3puuj2p30j63ep1aa8sd1b', '::1', 1573532458, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333533323434363b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('a7qvhccnhsnh2rcqjpl2e5pui37ic6gj', '127.0.0.1', 1573533286, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333533333034333b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('5uopsjpgcspf8m6f6664428avl08ctfl', '127.0.0.1', 1573533740, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333533333430333b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('h0dpr5je0vbaukd413mhnusgtqh45dtc', '127.0.0.1', 1573534281, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333533343038393b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('mps5o1u68bsi5tj7cim7euva74smnkg2', '127.0.0.1', 1573541257, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333533343938373b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a22686173616e223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('db4v4ief85uutfv0dqfvd3kne4d6hufv', '127.0.0.1', 1573541531, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333534313236333b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('m32kbv99assrm1qdms2emabvlchstmt7', '127.0.0.1', 1573541874, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333534313631323b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('0nkdfo33q8ru929r2lrqiqairujbqp0u', '127.0.0.1', 1573541917, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333534313931373b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('1s9ftgj3r93i02k1c49s90q18dgf8gu2', '127.0.0.1', 1573589093, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333538383833313b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('3ffv0aq9v005gv4vbnrm8te0cu2m0lhg', '127.0.0.1', 1573589289, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333538393237323b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('1iqanijamam6d8d0s6c60tc4h0b3bln2', '127.0.0.1', 1573591995, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333538393731383b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('6d80l58flff0ik4l0bhmii4ghc80fvv3', '127.0.0.1', 1573592192, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333539323034353b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('c4vk0hifeusl9gd7cfv2lvgravg0irsq', '127.0.0.1', 1573668237, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333636383139343b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('or7jku0ihkr17miqbdtvn5qtcdmkqkhn', '127.0.0.1', 1573668956, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333636383632383b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('e15jb8mrkp4vsrl0jvbumep0m6csfgiu', '127.0.0.1', 1573669080, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333636383936323b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('iqtchk8mp18c3qsh93vqtlsnu0harfi7', '127.0.0.1', 1573669398, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333636393238373b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b),
+('fkp00996916nbpa1fnl27lrdnccoiijf', '127.0.0.1', 1573669603, 0x5f5f63695f6c6173745f726567656e65726174657c693a313537333636393630333b63757272656e745f6c616e67756167657c733a373a22656e676c697368223b73746166665f6c6f67696e7c733a313a2231223b6c6f67696e5f747970657c733a353a227374616666223b6c6f67696e5f757365725f69647c733a313a2232223b6e616d657c733a353a227374616666223b757365725f747970657c733a313a2232223b70686f6e657c733a393a22343333343132333434223b757365725f656d61696c7c733a31373a227374616666406578616d706c652e636f6d223b);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `invoice_id` int(11) NOT NULL,
+  `code` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` text COLLATE utf8_unicode_ci,
+  `patient_id` int(11) NOT NULL DEFAULT '0',
+  `appointment_id` int(11) NOT NULL DEFAULT '0',
+  `charge` decimal(10,0) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '1-paid 0-unpaid',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `chamber_id` int(11) NOT NULL DEFAULT '0',
+  `timestamp` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`invoice_id`, `code`, `title`, `patient_id`, `appointment_id`, `charge`, `status`, `user_id`, `chamber_id`, `timestamp`) VALUES
+(1, 'ff0320e', 'yyyygvg', 1, 0, '20', 1, 1, 3, 1573322400);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medicine`
+--
+
+CREATE TABLE `medicine` (
+  `medicine_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `account_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient`
+--
+
+CREATE TABLE `patient` (
+  `patient_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `about` text COLLATE utf8_unicode_ci,
+  `age` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `medical_info` longtext COLLATE utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`patient_id`, `user_id`, `name`, `phone`, `address`, `about`, `age`, `gender`, `medical_info`) VALUES
+(1, NULL, 'md alam', '01708454693', NULL, NULL, NULL, NULL, NULL),
+(2, NULL, 'sejan', '8892789823', 'Dhaka', NULL, '30', 'male', '[{\"blood_group\":\"A+\",\"height\":\"5\",\"weight\":\"65\",\"blood_pressure\":\"\",\"pulse\":\"\",\"respiration\":\"\",\"allergy\":\"\",\"diet\":\"yes\"}]'),
+(3, NULL, 'Jahan', '01708787878', NULL, NULL, NULL, NULL, NULL),
+(4, NULL, 'Faisal', '(465) 464-5646', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prescription`
+--
+
+CREATE TABLE `prescription` (
+  `prescription_id` int(11) NOT NULL,
+  `appointment_id` int(11) NOT NULL,
+  `symptom` text COLLATE utf8_unicode_ci NOT NULL,
+  `diagnosis` text COLLATE utf8_unicode_ci NOT NULL,
+  `medicine` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'json',
+  `test` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'json',
+  `patient_id` int(11) NOT NULL,
+  `chamber_id` int(11) NOT NULL,
+  `timestamp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `prescription`
+--
+
+INSERT INTO `prescription` (`prescription_id`, `appointment_id`, `symptom`, `diagnosis`, `medicine`, `test`, `patient_id`, `chamber_id`, `timestamp`) VALUES
+(1, 1, '', '', '', '', 1, 1, 1573322400),
+(2, 2, '', '', '', '', 2, 3, 1573322400),
+(3, 3, '', '', '', '', 3, 3, 1573426800),
+(4, 4, '', '', '', '', 3, 3, 1573513200),
+(5, 6, '', '', '', '', 3, 3, 1573513200),
+(6, 5, '', '', '', '', 3, 3, 1573513200),
+(7, 7, '', '', '', '', 4, 3, 1573513200);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report`
+--
+
+CREATE TABLE `report` (
+  `report_id` int(11) NOT NULL,
+  `appointment_id` int(11) NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `settings_id` int(11) NOT NULL,
+  `type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`settings_id`, `type`, `description`) VALUES
+(1, 'doctor_name', 'John Doe'),
+(2, 'chamber_id', '3'),
+(3, 'currency', 'USD'),
+(4, 'language', 'english'),
+(5, 'logo', 'favicon.png'),
+(6, 'doctor_email', 'doctor@doctorchamber.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_type` int(3) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` text COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_login` int(11) DEFAULT NULL,
+  `auth_token` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_type`, `name`, `email`, `password`, `phone`, `last_login`, `auth_token`) VALUES
+(1, 1, 'Dr. John Doe', 'doctor@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '01717055740', 1573668618, ''),
+(2, 2, 'staff', 'staff@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '433412344', 1573668926, '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`appointment_id`);
+
+--
+-- Indexes for table `chamber`
+--
+ALTER TABLE `chamber`
+  ADD PRIMARY KEY (`chamber_id`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`invoice_id`);
+
+--
+-- Indexes for table `medicine`
+--
+ALTER TABLE `medicine`
+  ADD PRIMARY KEY (`medicine_id`);
+
+--
+-- Indexes for table `patient`
+--
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`patient_id`);
+
+--
+-- Indexes for table `prescription`
+--
+ALTER TABLE `prescription`
+  ADD PRIMARY KEY (`prescription_id`);
+
+--
+-- Indexes for table `report`
+--
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`report_id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`settings_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `chamber`
+--
+ALTER TABLE `chamber`
+  MODIFY `chamber_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `medicine`
+--
+ALTER TABLE `medicine`
+  MODIFY `medicine_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `patient`
+--
+ALTER TABLE `patient`
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `prescription`
+--
+ALTER TABLE `prescription`
+  MODIFY `prescription_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `report`
+--
+ALTER TABLE `report`
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
