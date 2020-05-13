@@ -1,0 +1,324 @@
+/*
+ Theme Name:   Infinite Child
+ Theme URI:    https://caremedical.mu/infinite-child/
+ Description:  Infinite Child Theme
+ Author:       Goodlayers
+ Author URI:   https://caremedical.mu/
+ Template:     infinite
+ Version:      2.0.1
+ License:      GNU General Public License v2
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, left-sidebar, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, sticky-post, threaded-comments, translation-ready
+ Text Domain:  infinite-child
+*/
+
+/* custom style linkplayer2525 */
+
+.home_serv_blocks h4, .home_serv_blocks p {
+    text-align: center;
+}
+.infinite-top-bar {height: 51px;}
+ul.top_bar_menu {
+    margin-left: 0px;
+    padding-top:5px;
+    margin-bottom: 0px;
+}
+ul.top_bar_menu li {
+    display: inline-block;
+    margin-left: 45px;
+	font-weight:600;
+}
+.top_bar_menu ul {
+    margin-left: 0px;
+    padding-top:5px;
+    margin-bottom: 0px;
+}
+.top_bar_menu ul li {
+    display: inline-block;
+    margin-left: 55px;
+	font-weight:600;
+}
+.infinite-navigation-bar-wrap{
+	    border-color: #215fac !important;
+}
+.infinite-main-menu .sf-menu li.current-menu-item, .infinite-main-menu .sf-menu li:hover {
+    border-bottom: 3px solid #fff;
+}
+.infinite-main-menu .sf-menu li {
+    padding:0px 10px!important;
+    margin-right: 37px;
+}
+.heading_border h1, .heading_border h2, .heading_border h3, .heading_border h4, .heading_border h5, .heading_border h6 {
+    border-bottom: 3px solid #0cb9d3;
+    display: inline-block;
+	padding-bottom: 10px;
+}
+
+.home_intro_col {
+    width: 68%;
+    margin-left: 102px;
+}
+.home_intro_link a {
+    border-color: #215fac !important;
+}
+.home_intro_link a span {
+    display: inline-block;
+    margin-right: 19px;
+}
+.home_serv_blocks p {
+    text-align: center;
+    width: 469px;
+    margin: 0 auto 3px;
+	font-size: 12px;
+}
+.home_serv_blocks img {
+    width: 55px;
+    height: auto;
+}
+.home_serv_blocks h4 {
+    font-size: 18px;
+	margin-bottom: 10px;
+}
+.home_serv_blocks a, .home_serv_blocks a:hover, .home_serv_blocks a:focus {
+    color: #1dbbd3;
+	margin-top: 4px !important;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+.blog_sec h3.gdlr-core-block-item-title {
+    font-weight: 600;
+}
+
+.blog_sec a.gdlr-core-excerpt-read-more {
+    background: #215fac;
+    float: right;
+    margin-bottom: 20px;
+}
+.team_post_read_more_link a.gdlr-core-excerpt-read-more {
+    background: #215fac!important;
+    margin-bottom: 20px;
+}
+.blog_sec .gdlr-core-skin-divider {
+    border-color: #0cb9d3;
+    clear: both;
+}
+.blog_sec .gdlr-core-skin-divider {
+    border-color: #0cb9d3;
+	display: none;
+    border-bottom: 1px solid #0cb9d3;
+    padding-bottom: 12px;
+}
+footer .infinite-footer-column {
+    border: none !important;
+}
+footer h3.infinite-widget-title {
+    margin-bottom: 32px !important;
+}
+.footer_opening_hours h5{
+	font-size:13px;
+	margin-bottom:0px;
+}
+.footer_opening_hours p {
+    font-size: 11px;
+    font-weight: 300;
+    margin-top: 13px;
+    font-style: italic;
+    border-bottom: 1px solid #0cb9d3;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+ul#menu-footer-menu li {
+    border: none;
+    margin-bottom: 7px;
+    padding-bottom: 0px;
+    list-style-type: circle;
+    font-size: 15px;
+    padding-left: 12px;
+}
+ul#menu-footer-menu li:before {
+    content: none;
+}
+.single_blog_sec h3.gdlr-core-blog-title {
+    text-transform: capitalize !important;
+    font-weight: 400;
+}
+.gdlr-core-blog-date-wrapper .gdlr-core-blog-date-day {
+    font-weight: 400 !important;
+}
+.single_blog_sec a i {
+    display: none;
+}
+.single_blog_sec a.gdlr-core-plain-text {
+    float: right;
+	color:#215fac;
+	 text-transform: uppercase;
+}
+.form_title_sec .gdlr-core-title-item-title {
+    border-bottom: 3px solid #e6e6e6;
+    padding-bottom: 23px;
+}
+.form_intro_sec {color: #c3c1c0;}
+.contact_page_form .wpcf7 input, .contact_page_form .wpcf7 textarea {
+    background: #f3f3f3;
+	  width: 92% !important;
+}
+.contact_page_form input.wpcf7-submit {
+    background: #42489e !important;
+    width: 279px !important;
+    font-weight: normal !important;
+    padding: 21px 33px !important;
+}
+.contact_page_form .wpcf7 p {
+    margin-bottom: 18px;
+}
+.physio_service_block ul li {
+    list-style-type: none;
+}
+.physio_service_block ul li:before {
+    content: "-" !important;
+    font-size: 12px !important;
+    font-weight: bold;
+    position: absolute;
+    left: 0px;
+    margin-top: 2px;
+}
+.display_mobile{display:none;}
+.team_intro_sec{text-align:justify;}
+.team_expertise_sec ul {margin-left: 19px!important;}
+.team_expertise_sec strong{
+	font-size:18px;
+	color:#1fbfdf;
+}
+.team_blocks_sec .gdlr-core-personnel-list-title a{color:#215fac;}
+.team_blocks_sec .gdlr-core-skin-caption{color:#1fbfdf;}
+
+.heading_border h3.gdlr-core-blog-title {
+    border: none;
+    padding: none;
+}
+.home_intro_text h2 {
+    margin-bottom: 47px;
+}
+.blog_sec .gdlr-core-blog-content {
+    font-size: 13px;
+}
+.infinite-top-bar
+{
+	position: fixed;
+    width: 100%;
+    clear: both;
+    z-index: 999999;
+}
+.infinite-header-wrap{
+	padding-top: 45px;
+}
+@media(max-width:1024px){
+	ul.top_bar_menu li {margin-left: 50px;}
+	ul.top_bar_menu li a{font-size:12px}
+}
+@media(max-width:999px){
+	.infinite-mobile-header{
+	padding-top: 65px !important;
+}
+}
+@media(max-width:900px){
+	ul.top_bar_menu li{
+		margin-left:45px;
+	}
+	.top_bar_menu ul li{
+		margin-left:45px;
+	}
+	ul.top_bar_menu li a{font-size:10px}
+}
+@media(max-width:800px){
+	ul.top_bar_menu li{
+		margin-left:20px;
+	}
+	.top_bar_menu ul li{
+		margin-left:20px;
+	}
+}
+@media(max-width:767px){
+	.infinite-mobile-header-wrap  .infinite-top-bar-container{
+		max-width: 100% !important;
+	}
+	.infinite-mobile-header-wrap .infinite-top-bar-right {
+    	float: none;
+		padding-left: 0px !important;
+    	padding-right: 0px !important;
+	}
+	ul.top_bar_menu li {
+		margin-left: 0px;
+		margin-right: 10px;
+		font-size: 12px;
+	}
+	ul.top_bar_menu li a{font-size:10px}
+	.top_bar_menu ul li {
+		margin-left: 0px;
+		margin-right: 10px;
+		font-size: 12px;
+	}
+	
+.infinite-mobile-header-wrap 	.infinite-top-bar-right-text{
+		  
+		text-align: left;
+	}
+	.site_full_sec .gdlr-core-pbf-wrapper-container, .gdlr-core-pbf-wrapper-full-no-space {
+    max-width: 100% !important;
+}
+	.home_intro_col {width: 100%;}
+	.service_inner_bg_sec .gdlr-core-pbf-background {
+		background:none !important;
+		height:auto;
+		width:auto;
+	}
+	.gdlr-core-pbf-wrapper-container .service_inner_bg_sec {
+    padding: 0px !important;
+}
+	.display_mobile{
+		display:block;
+		padding-bottom: 0px;
+	}
+	.display_mobile p{margin-bottom:0px;
+		line-height: 0px;
+	}
+	.home_serv_blocks p{width:100%;}
+}
+@media(max-width:600px){
+	ul.top_bar_menu li {
+		margin-left: 0px;
+		margin-right: 3px;
+		font-size: 10px;
+	}
+	.top_bar_menu ul li {
+		margin-left: 0px;
+		margin-right: 3px;
+		font-size: 10px;
+	}
+}
+@media(max-width:560px){
+	.infinite-mobile-header{
+		padding-top:92px !important;	
+	}
+	
+}
+@media(max-width:480px){
+	.contact_page_form .wpcf7 input, .contact_page_form .wpcf7 textarea, .contact_page_form input.wpcf7-submit{width:100% !important;}
+	.infinite-mobile-header-wrap .infinite-top-bar {
+    font-size: 11px;
+}
+}
+@media(max-width:360px){
+	.infinite-top-bar {height: 80px;}
+}
+/* custom style linkplayer 2525 end */
+
+.blog_second a.gdlr-core-excerpt-read-more {
+    background: #215fac;
+    margin-bottom: 20px;
+}
+
+

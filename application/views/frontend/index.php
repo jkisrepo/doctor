@@ -5,13 +5,13 @@
 <?php
 //print_r($address);
 
-
 $userdata = $this->db->get('users')->row();
 $email = get_user_info_by_id($userdata->user_id, 'email');
 $phone = get_user_info_by_id($userdata->user_id, 'phone');
 $SliderContentSettings = $this->db->get('fend_slidercontent')->result_array();
 $PromoContentSettings = $this->db->get('fend_promocontent')->result_array();
 $ChambersList = $this->db->get('chamber')->result_array();
+$normalhours = $this->chamber_model->get_cateogryList();
 $TestimonialSettings = $this->db->get('fend_testimonial')->result_array();
 $Qualification = $this->db->get('fend_qualification')->row();
 $BlogSettings = $this->db->get('fend_blog')->result_array();
@@ -28,7 +28,8 @@ if (is_array($address)) {
 ?>
 
 <head>
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('uploads/favicon.png');?>">
+	<title>Services &#8211; Care Medical</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://caremedical.mu/wp-content/uploads/2018/10/favicon.png">
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/backend/bootstrap/dist/css/bootstrap.min.css');?>" > -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -57,21 +58,22 @@ if (is_array($address)) {
     		<div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
     			<div class="col-lg-2 pr-4 align-items-center">
 		    		<!-- <a class="navbar-brand" href="/">Dr.<span>care</span></a> -->
-		    		<a href="<?php echo base_url()?>frontend"><img src="<?php echo base_url()?>uploads/favicon.png"></a>
+					<img src="https://caremedical.mu/wp-content/uploads/2018/09/care-logo.png" alt="" width="200" height="100">
+		    		<!-- <a href="<?php echo base_url()?>frontend"><img src="<?php echo base_url()?>uploads/favicon.png"></a> -->
 	    		</div>
 	    		<div class="col-lg-10 d-none d-md-block">
 		    		<div class="row d-flex">
 			    		<div class="col-md-4 pr-4 d-flex topper align-items-center">
 			    			<div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-map"></span></div>
-						    <span class="text">Address: <?php echo !empty($text_address) ? $text_address: ""?></span>
+						    <span class="text">Address: Care Medical and Paramedical Centre, Labourdonnais, Mapou, Mauritius</span>
 					    </div>
 					    <div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">Email: <?php echo !empty($email) ? $email:''; ?></span>
+						    <span class="text">Email: care@ddl.mu</span>
 					    </div>
 					    <div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">Phone: <?php echo !empty($phone) ? $phone:''; ?></span>
+						    <span class="text">Phone: +230 266 96 30</span>
 					    </div>
 				    </div>
 			    </div>
@@ -91,8 +93,8 @@ if (is_array($address)) {
 	        	<li class="nav-item active"><a href="#Home" class="nav-link pl-0">Home</a></li>
 	        	<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="#Testmonial" class="nav-link">Testmonial</a></li>
-	        	<li class="nav-item"><a href="#chambers" class="nav-link">Chambers</a></li>
-	        	<li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+	        	<li class="nav-item"><a href="#chambers" class="nav-link">Doctors</a></li>
+				<li class="nav-item"><a href="#workshop" class="nav-link">Workshop</a></li>
 	          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
@@ -157,7 +159,7 @@ if (is_array($address)) {
 					<div class="col-md-7 wrap-about py-4 py-md-5 ftco-animate">
 	          <div class="heading-section mb-5">
 	          	<div class="pl-md-5 ml-md-5">
-		          	<span class="subheading">About <?php echo get_user_info_by_id($userdata->user_id,'name');?></span>
+		          	<span class="subheading">About Care </span>
 		            <h2 class="mb-4" style="font-size: 28px;"><?php echo $Qualification->qualification_title?></h2>
 	            </div>
 	          </div>
@@ -179,7 +181,7 @@ if (is_array($address)) {
 						<p></p>
 					</div>
 					<div class="col-md-3 d-flex align-items-center">
-						<p class="mb-0"><a href="#" class="btn btn-secondary px-4 py-3">Free Consutation</a></p>
+						<p class="mb-0"><a href="#chambers" class="btn btn-secondary px-4 py-5">Free Consutation</a></p>
 					</div>
 				</div>
 			</div>
@@ -192,11 +194,11 @@ if (is_array($address)) {
         <div class="row justify-content-center mb-5 pb-2">
           <div class="col-md-8 text-center heading-section ftco-animate">
           	<span class="subheading">Testimonials</span>
-            <h2 class="mb-4">Our Patients Says About Us</h2>
-            <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+            <h2 class="mb-4">Our patients are our biggest supporters</h2>
+            <p>Le personnel de cette clinique de jour est formidable , et Tres compétent !! Merci docteur Tennant !!</p>
           </div>
         </div>
-        <div class="row ftco-animate justify-content-center">
+        <!-- <div class="row ftco-animate justify-content-center">
           <div class="col-md-8">
             <div class="carousel-testimony owl-carousel">
             	<?php foreach ($TestimonialSettings as $row):?>
@@ -210,14 +212,14 @@ if (is_array($address)) {
                     </span>
                     <p><?php echo $row['description']?></p>
                     <p class="name"><?php echo $row['user_name']?></p>
-                    <!-- <span class="position">Farmer</span> -->
+                    <span class="position">Farmer</span> 
                   </div>
                 </div>
               </div>
               <?php endforeach; ?>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -229,16 +231,13 @@ if (is_array($address)) {
     			<div class="col-md-6 py-5 pr-md-5">
 	          <div class="heading-section heading-section-white ftco-animate mb-5">
 	          	<span class="subheading">Consultation</span>
-	            <h2 class="mb-4">Free Consultation</h2>
-	            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+	            <h2 class="mb-4"> Book an appointment</h2>
+	            <p>Our therapists are always here for YOU</p>
 	          </div>
-	          <form action="#" class="appointment-form ftco-animate">
+	          <form action="<?php echo site_url('/frontend/appointment/create');?>" method="POST" class="appointment-form ftco-animate">
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
-		    					<input type="text" class="form-control" placeholder="First Name">
-		    				</div>
-		    				<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Last Name">
+		    					<input type="text" class="form-control" id="patientName" placeholder="Name" name="name">
 		    				</div>
 	    				</div>
 	    				<div class="d-md-flex">
@@ -246,40 +245,44 @@ if (is_array($address)) {
 		    					<div class="form-field">
           					<div class="select-wrap">
 			                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                      <select name="" id="" class="form-control">
-			                      	<option value="">Select Your chamber</option>
+			                      <select name="chamber_id" id="chamber_id" class="form-control">
+			                      	<option value="" style = background-color:#3498db;>Choose Practitioner</option>
 			                      	<?php foreach ($ChambersList as $row){ ?>
-			                        <option value="<?php echo $row['name']?>"><?php echo $row['name']?></option>			                        
+			                        <option value="<?php echo $row['name']?>"style = background-color:#3498db; ><?php echo $row['name']?></option>			                        
 			                    	<?php }?>
 			                      </select>
 			                    </div>
 		              		</div>
-		    				</div>
-	    					
+		    				</div>	    					
 	    					<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Phone">
+		    					<input type="text" class="form-control" placeholder="Phone" id="patientPhone" name ="phone">
 		    				</div>
 	    				</div>
 	    				<div class="d-md-flex">
-		    				<div class="form-group">
+		    				<div class="form-group ml-md-6">
 		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-md-calendar"></span></div>
-		            		<input type="text" class="form-control appointment_date" placeholder="Date">
+		            		<!-- <div class="icon"><span class="ion-md-calendar"></span></div> -->
+		            		<input type="date"  id="timestamp" class="form-control" placeholder="Appointment Date" name="timestamp">
+			    
 	            		</div>
 		    				</div>
-		    				<div class="form-group ml-md-4">
+									
+							
+							<div class="form-group ml-md-4">
 		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-ios-clock"></span></div>
-		            		<input type="text" class="form-control appointment_time" placeholder="Time">
-	            		</div>
+		            				<input type="email" class="form-control" placeholder="Email" name="emailAddress" id="patientEmail">
+	            				</div>
 		    				</div>
+							
+		    				
 	    				</div>
 	    				<div class="d-md-flex">
-	    					<div class="form-group">
-		              <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
-		            </div>
+						
+	    					
+					<input id="patient_type" type="hidden" name="patient_type" value="new">
 		            <div class="form-group ml-md-4">
-		              <input type="submit" value="Appointment" class="btn btn-secondary py-3 px-4">
+		              <!--<input type="submit" value="Appointment" class="btn btn-secondary py-5 px-6">-->
+		              <button value="Appointment" class="btn btn-secondary py-5 px-6"  onclick="showAlert()">Book Appointment</button>
 		            </div>
 	    				</div>
 	    			</form>
@@ -288,8 +291,7 @@ if (is_array($address)) {
     	 <?php $days = array(0 => 'sunday', 1 => 'monday', 2=>'tuesday', 3=> 'wednesday', 4=> 'thursday', 5=> 'friday', 6 =>'saturday'); ?>
        
     			<div class="col-lg-6 p-5 bg-counter aside-stretch">
-						<h3 class="vr">About <?php echo get_user_info_by_id($userdata->user_id,'name'); ?> Facts</h3>
-    			
+						
 
 		          <div class="panel-group" id="accordion">
 		          	<?php foreach ($ChambersList as $row) {?>
@@ -356,9 +358,22 @@ if (is_array($address)) {
     	</div>
     </section>
 
+	<!-- <div style="margin-top:5%"></div> -->
+
+	<section id="workshop" class="ftco-section bg-light">
+			<div class="container">
+				<div class="row justify-content-center mb-5 pb-2">
+		          <div class="col-md-8 text-center heading-section ftco-animate">
+		          	<span class="subheading">Workshop</span>
+		            <h2 class="mb-4">Regular Worskhop</h2>
+		            <p>Regular workshops will be available, follow us on Facebook for updates</p>
+		          </div>
+		        </div>			
+			</div>
+		</section> 
    
 
-		<section id="blog" class="ftco-section bg-light">
+		<!-- <section id="blog" class="ftco-section bg-light">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-2">
 		          <div class="col-md-8 text-center heading-section ftco-animate">
@@ -392,18 +407,18 @@ if (is_array($address)) {
           
         	</div>
 			</div>
-		</section>
+		</section> -->
 
 		
-    <footer id="contact" class="ftco-footer ftco-bg-dark ftco-section">
+    <footer id="contact" class="ftco-footer ftco-section" style="Background-Color:#4A8DCB">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
-            <div class="ftco-footer-widget mb-5">
+            <!-- <div class="ftco-footer-widget mb-5">
               <h2 class="ftco-heading-2 logo"><span><?php echo get_user_info_by_id($userdata->user_id,'name');?></span></h2>
               <p><?php echo $Qualification->qualification_title?></p>
-            </div>
-            <div class="ftco-footer-widget mb-5">
+            </div> -->
+            <div class="ftco-footer-widget mb-3">
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
@@ -421,8 +436,8 @@ if (is_array($address)) {
             </div>
           </div>
           <div class="col-md">
-            <div class="ftco-footer-widget mb-5 ml-md-4">
-              <h2 class="ftco-heading-2">Links</h2>
+            <div class="ftco-footer-widget" style="margin-left:50px">
+              <h2 class="ftco-heading-2">Opening Hours</h2>
               <ul class="list-unstyled">
                 <li><a href="#Home"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
                 <li><a href="#About"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
@@ -431,7 +446,7 @@ if (is_array($address)) {
                 <li><a href="#contact"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
               </ul>
             </div>
-           <!--  <div class="ftco-footer-widget mb-5 ml-md-4">
+            <!-- <div class="ftco-footer-widget">
               <h2 class="ftco-heading-2">Services</h2>
               <ul class="list-unstyled">
                 <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Neurolgy</a></li>
@@ -442,7 +457,7 @@ if (is_array($address)) {
               </ul>
             </div> -->
           </div>
-          <div class="col-md">
+          <!-- <div class="col-md">
             <div class="ftco-footer-widget mb-5">
               <h2 class="ftco-heading-2">Recent Blog</h2>
               <?php foreach ($BlogSettings as $row){ ?>
@@ -458,9 +473,9 @@ if (is_array($address)) {
           	<?php }?>
               
             </div>
-          </div>
+          </div> -->
           <div class="col-md">
-          	<div class="ftco-footer-widget mb-5">
+          	<div class="ftco-footer-widget mb-3">
             	<h2 class="ftco-heading-2">Opening Hours</h2>
             	<h3 class="open-hours pl-4"><span class="ion-ios-time mr-3"></span>We are open 24/7</h3>
             </div>
@@ -477,17 +492,27 @@ if (is_array($address)) {
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+  			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </a>
+  			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
       </div>
     </footer>
 
 
-<?php include 'include_frontend_bottom.php';?>
+	<?php include 'include_frontend_bottom.php';?>
+	<script type="text/javascript">
+
+var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("timestamp")[0].setAttribute('min', today);
+  function showAlert() {
+    alert ("Your Appointment has been booked, our personnel will contact you soon to confirm date and doctor in charged.");
+  }
+
+  
+  </script>
+
 </body>
 
 </html>

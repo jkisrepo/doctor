@@ -77,4 +77,14 @@ class Patient_model extends CI_Model
 		return $query->row();
 	}
 
+	function get_patient_by_email($emailAddress)
+	{
+		$query = $this->db->select('patient_id')->get_where('patient', array('emailAddress' => $emailAddress ));
+		if ($query->num_rows() > 0) {
+			return $query->row()->patient_id;
+		} else {
+			return '';
+		}
+	}
+
 }

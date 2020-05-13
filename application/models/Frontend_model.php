@@ -1,4 +1,5 @@
 <?php
+ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Frontend_model extends CI_Model
@@ -184,6 +185,53 @@ class Frontend_model extends CI_Model
 		}
 		return TRUE;
 	}
+
+	function create_appointment()
+	{
+		$patient_type = $this->input->post('patient_type');
+		if ($patient_type == 'new') {
+			$data_patient['name']  = $this->input->post('name');
+			$data_patient['phone'] = $this->input->post('phone');
+			$data_patient['emailAddress'] = $this->input->post('emailAddress');
+			if ($this->validation_model->validate_patient($data_patient['emailAddress']) == FALSE) {
+				
+				$patient_id = $this->patient_model->get_patient_by_email($data_patient['emailAddress']);		
+				
+			} else {
+				$this->db->insert('patient', $data_patient);
+				$patient_id = $this->db->insert_id();
+			}
+		} else {
+			$patient_id = $this->input->post('patient_id');
+		}
+
+		$data_appointment['timestamp']  = strtotime($this->input->post('timestamp'));
+		$data_appointment['schedule']   = $this->input->post('schedule');
+		$data_appointment['patient_id'] = $patient_id;
+		$data_appointment['user_id']    = 3;
+		$data_appointment['chamber_id'] = $this->chamber_model->get_chamber_by_name($this->input->post('chamber_id'));
+		$data_appointment['is_visited'] = 0;
+
+		$to_email = $data_patient['emailAddress'];
+		$subject = "Appointment Done - Medical Service Care";
+		$body = 'Hi,'."\r\n".'You have an appointment at Medical Service Care on '.$this->input->post('timestamp'). 'with a '.$this->input->post('chamber_id')."\r\n".'The Secretary will call you soon to confirm your appointment'."\r\n".'Kind regards,'."\r\n".'Medical Service Team';
+		$headers = "From: noreply@ddl.mu";
+		
+		mail($to_email, $subject, $body, $headers);
+
+		// if () {
+		// 	echo "Email successfully sent to $to_email...";
+		// } else {
+		// 	echo "Email sending failed...";
+		// }
+
+
+		$this->db->insert('appointment', $data_appointment);
+
+		
+		return TRUE;
+	}
+
 
 	
 

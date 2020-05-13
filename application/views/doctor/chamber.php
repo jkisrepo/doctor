@@ -61,6 +61,7 @@
             <tr>
               <th>#</th>
               <th><?php echo get_phrase('name'); ?></th>
+              <th><?php echo get_phrase('category'); ?></th>
               <th><?php echo get_phrase('address'); ?></th>
               <th><?php echo get_phrase('no_of_staff'); ?></th>
               <th><?php echo get_phrase('options'); ?></th>
@@ -75,9 +76,10 @@
             <tr>
               <td><?php echo $count++; ?></td>
               <td><?php echo $row['name']; ?></td>
+              <td><?php echo  $this->chamber_model->get_category($row['catId'] )?></td>
               <td><?php echo $row['address']; ?></td>
               <td><?php echo count($this->db->get_where('staffusers',array('chamber' =>  $row['chamber_id']))->result_array()) ?></td>
-              <td>
+              <td> 
                 <a href="<?php echo site_url('doctor/schedule/' . $row['chamber_id']);?>"
                   class="fcbtn btn btn-info btn-outline btn-1d btn-sm">
                   <?php echo get_phrase('manage_schedule'); ?>

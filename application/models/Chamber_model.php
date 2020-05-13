@@ -51,6 +51,18 @@ class Chamber_model extends CI_Model
 		}
 	}
 
+	function get_chamber_by_name($name)
+	{
+		$query = $this->db->select('chamber_id')->get_where('chamber', array(
+			'name' => $name
+		));
+		if ($query->num_rows() > 0) {
+			return $query->row()->chamber_id;
+		} else {
+			return '';
+		}
+	}
+
 	function get_staff($chamber_id)
 	{
 		$user_type = 2;
@@ -58,7 +70,7 @@ class Chamber_model extends CI_Model
 			'user_type' => $user_type
 		));
 		if ($query->num_rows() > 0) {
-			return $query->row();
+			return $query->row();;
 		} else {
 			return '';
 		}
@@ -85,5 +97,36 @@ class Chamber_model extends CI_Model
 			return '';
 		}
 	}
+
+	function get_cateogryList()
+	{
+		$query = $this->db->select('type')->get('category');
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return '';
+		}
+	}
+
+	function get_category($catId)
+	{
+		$query = $this->db->select('type')->get_where('category', array('catId' => $catId ));
+		if ($query->num_rows() > 0) {
+			return $query->row()->type;
+		} else {
+			return '';
+		}
+	}
+
+	function get_category_ID($type)
+	{
+		$query = $this->db->select('catId')->get_where('category', array('type' => $type ));
+		if ($query->num_rows() > 0) {
+			return $query->row()->catId;
+		} else {
+			return '';
+		}
+	}
+
 
 }

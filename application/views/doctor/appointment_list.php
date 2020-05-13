@@ -19,7 +19,7 @@
       <th><?php echo get_phrase('confirm'); ?></th>
       <th><?php echo get_phrase('schedule'); ?></th>
       <th><?php echo get_phrase('phone'); ?></th>
-      <th><?php echo get_phrase('created_by'); ?></th>
+      <!-- <th><?php echo get_phrase('created_by'); ?></th> -->
       <th data-hide="all"><?php echo get_phrase('manage'); ?></th>
     </tr>
   </thead>
@@ -47,15 +47,19 @@
       </td>
       <td><?php echo $row['schedule']; ?></td>
       <td><?php echo get_patient_phone_by_id($row['patient_id'], 'phone'); ?></td>
-      <td><label><?php echo $row['user_id'] !=1? get_staff_info_by_id($row['user_id'],'name') : get_user_info_by_id($row['user_id'],'name'); ?></label></td>
+      <!-- <td><label><?php echo $row['user_id'] !=1? get_staff_info_by_id($row['user_id'],'name') : get_user_info_by_id($row['user_id'],'name'); ?></label></td> -->
       <td>
         <a class="btn btn-info btn-rounded btn-sm"
           href="<?php echo site_url('doctor/patient_profile/' . $row['patient_id']);?>">
           <?php echo get_phrase('profile'); ?>
         </a>
-          <a class="btn btn-success btn-rounded btn-sm"
+          <!-- <a class="btn btn-success btn-rounded btn-sm"
              href="<?php echo site_url('doctor/prescription_manage/' . $prescription_id);?>">
               <?php echo get_phrase('prescription'); ?>
+          </a> -->
+          <a type="button" onclick="delete_appointment('<?php echo $row['appointment_id'];?>')"
+                        class="fcbtn btn btn-danger btn-rounded btn-1d btn-sm">
+                        <?php echo get_phrase('Cancel'); ?>
           </a>
       </td>
     </tr>
@@ -99,7 +103,25 @@
         }
       });
     });
-
   });
+
+    function delete_appointment(appointment_id) {
+    swal({
+      title: "Are you sure?",
+      text: "The appointment and it's content will be deleted permanently !",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonClass: 'btn-warning',
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false
+    }, function () {
+      swal("Deleted!", "Appointment deleted", "success");
+      setTimeout(function() {
+        window.location = "<?php echo site_url('doctor/appointment/delete/');?>" + appointment_id;
+      }, 1000);
+    });
+  }
+  
 
 </script>

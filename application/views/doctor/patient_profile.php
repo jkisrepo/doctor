@@ -164,6 +164,10 @@
                         class="fcbtn btn btn-info btn-outline btn-1d btn-sm">
                         <?php echo get_phrase('manage_prescription'); ?>
                       </a>
+                      <!-- <button type="button" onclick="delete_appointment('<?php echo $appointment['appointment_id'];?>')"
+                        class="fcbtn btn btn-danger btn-outline btn-1d btn-sm">
+                        <?php echo get_phrase('delete'); ?>
+                      </button> -->
                     </td>
                   </tr>
                 <?php endforeach; ?>
@@ -276,5 +280,23 @@
       }, 1000);
     });
   }
+
+  // function delete_appointment(appointment_id) {
+  //   swal({
+  //     title: "Are you sure?",
+  //     text: "The appointment and it's content will be deleted permanently !",
+  //     type: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#DD6B55",
+  //     confirmButtonClass: 'btn-warning',
+  //     confirmButtonText: "Yes, delete it!",
+  //     closeOnConfirm: false
+  //   }, function () {
+  //     swal("Deleted!", "Appointment deleted", "success");
+  //     setTimeout(function() {
+  //       window.location = "<?php echo site_url('doctor/appointment/delete/');?>" + appointment_id;
+  //     }, 1000);
+  //   });
+  // }
 
 </script>

@@ -15,6 +15,7 @@ class Doctor extends CI_Controller
 		$this->load->model('chamber_model');
 		$this->load->model('patient_model');
 		$this->load->model('appointment_model');
+		$this->load->model('email_model');
 		$this->load->model('prescription_model');
 		$this->load->model('validation_model');
 		$this->load->model('billing_model');
@@ -52,6 +53,13 @@ class Doctor extends CI_Controller
 				redirect(site_url('doctor/appointment'), 'refresh');
 			}
 		}
+		if ($param1 == 'delete') {
+			$this->db->where('appointment_id', $param2);
+			$this->db->delete('appointment');
+			$this->session->set_flashdata('success_message', get_phrase('appointment_was_deleted_successfully'));			
+			redirect(site_url('doctor/appointment'), 'refresh');
+		}
+		
 		$page_data['page_name']  = 'appointment';
 		$page_data['timestamp']  = strtotime(date('d-m-Y'));
 		$page_data['page_title'] = get_phrase('appointment_list');

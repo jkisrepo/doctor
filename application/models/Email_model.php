@@ -47,8 +47,8 @@ class Email_model extends CI_Model
 				'type' => 'doctor_email'
 			))->row()->description;
 
-		$this->email->from($from, $doctor_name);
-		$this->email->from($from, $doctor_name);
+		$this->email->from($from, "rossanmousaffar@gmail.com");
+		$this->email->from($from, "rossanmousaffar@gmail.com");
 		$this->email->to($to);
 		$this->email->subject($sub);
 

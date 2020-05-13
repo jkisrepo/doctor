@@ -41,11 +41,7 @@
                 <a href="<?php echo site_url('doctor/prescription_manage/' . $row['prescription_id']);?>"
                   class="fcbtn btn btn-info btn-outline btn-1d btn-sm">
                   <?php echo get_phrase('manage_prescription'); ?>
-                </a>
-                <button type="button" onclick="delete_prescription('<?php echo $row['prescription_id'];?>')"
-                  class="fcbtn btn btn-danger btn-outline btn-1d btn-sm">
-                  <?php echo get_phrase('delete'); ?>
-                </button>
+                </a>                
               </td>
             </tr>
           <?php endforeach; ?>

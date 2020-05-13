@@ -94,5 +94,20 @@ class Validation_model extends CI_Model
 			return TRUE;
 		}
 	}
+	function validate_patient($emailAddress)
+	{		
+		if($emailAddress != null)
+		{
+			$phone_in_patient_account = $this->db->get_where('patient', array(
+				'emailAddress' => $emailAddress
+			));
+		}
+		if ($phone_in_patient_account->num_rows() > 0) {
+			return FALSE;
+		} 
+		else {
+			return TRUE;
+		}
+	}
 
 }
